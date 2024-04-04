@@ -1,0 +1,12 @@
+{
+  "bigs" : [
+    {"grant": ["sarah", "fred"]},
+    {"simon": ["fred", "sabrina"]},
+    {"josh": ["fred", "sarah"]}
+  ],
+  "littles" : [
+    {"sarah": ["josh", "grant"]},
+    {"sabrina": ["josh", "grant"]},
+    {"fred": ["simon", "josh"]}
+  ]
+}
