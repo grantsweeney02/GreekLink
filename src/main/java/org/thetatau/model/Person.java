@@ -1,17 +1,16 @@
-package org.thetatau;
+package org.thetatau.model;
 import java.util.List;
 
 public class Person {
     public String name;
-    public List<Person> preferences;
+    public List<String> preferences;
 
     Person matched;
 
     public Person(String name) {
         this.name = name;
     }
-    public Person(String name, List<Person> preferences) {
-        this.name = name;
+    public void setPreferences(List<String> preferences) {
         this.preferences = preferences;
     }
 
