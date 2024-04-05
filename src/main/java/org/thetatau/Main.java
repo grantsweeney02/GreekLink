@@ -1,12 +1,7 @@
 package org.thetatau;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-
-import org.json.JSONException;
 import org.json.JSONObject;
-import java.nio.charset.StandardCharsets;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,11 +10,12 @@ import org.thetatau.model.Person;
 import org.thetatau.util.JsonUtil;
 import org.thetatau.util.PersonUtil;
 
+import javax.crypto.Mac;
+
 public class Main {
 
 
     public static void main(String[] args) {
-        // Retrieve JSON as a String
         JSONObject jsonData = JsonUtil.readJsonFromFile("src/main/resources/tester.json");
 
         Map<String, Person> bigs = PersonUtil.createPeopleFromJson(jsonData.getJSONObject("bigs"));
@@ -33,7 +29,7 @@ public class Main {
             System.out.println(littles.get(s));
         }
 
-        MatchingAlgorithm.runAlgorithm(bigs, littles);
+        MatchingAlgorithm.runMyAlgorithm(bigs, littles);
         System.out.println("\nAfter little's' Preferences");
         for (String s: bigs.keySet()) {
             System.out.println(bigs.get(s));
@@ -43,7 +39,11 @@ public class Main {
         }
         HashMap<String, Person> unMatchedBigs = PersonUtil.findUnMatchedPeople(bigs);
         HashMap<String, Person> unMatchedLittles = PersonUtil.findUnMatchedPeople(littles);
-        MatchingAlgorithm.runAlgorithm(unMatchedLittles, unMatchedBigs);
+        MatchingAlgorithm.runMyAlgorithm(unMatchedLittles, unMatchedBigs);
+
+        unMatchedBigs = PersonUtil.findUnMatchedPeople(bigs);
+        unMatchedLittles = PersonUtil.findUnMatchedPeople(littles);
+        MatchingAlgorithm.runRandomAlgorithm(unMatchedBigs, unMatchedLittles);
 
         System.out.println("\nFinal Matching");
         for (String s: bigs.keySet()) {
@@ -52,14 +52,6 @@ public class Main {
         for (String s: littles.keySet()) {
             System.out.println(littles.get(s));
         }
-        // Create bigs and littles
-
-
-        // initalize bigs with name
-        // add all littles' prefs
-        // add all bigs' prefs
-        // run algo
-        // print
     }
 
     private static void createPeople(JSONObject obj) {

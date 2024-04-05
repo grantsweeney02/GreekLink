@@ -32,7 +32,7 @@ public class Person {
     }
 
     public boolean isMatched() {
-        return this.match != null;
+        return this.match == null;
     }
 
     public void removeMatch() {

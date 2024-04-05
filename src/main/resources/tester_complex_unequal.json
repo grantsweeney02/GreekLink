@@ -1,0 +1,15 @@
+{
+  "bigs": {
+    "Alex": ["Dana", "Charlie", "Erin", "Frank", "Gina"],
+    "Blake": ["Erin", "Gina", "Dana", "Charlie", "Frank"],
+    "Casey": ["Charlie", "Frank", "Gina", "Dana", "Erin"],
+    "Drew": ["Gina", "Erin", "Charlie", "Dana", "Frank"]
+  },
+  "littles": {
+    "Charlie": ["Drew", "Casey", "Blake", "Alex"],
+    "Dana": ["Alex", "Casey", "Blake", "Drew"],
+    "Erin": ["Casey", "Drew", "Alex", "Blake"],
+    "Frank": ["Blake", "Drew", "Alex", "Casey"],
+    "Gina": ["Casey", "Alex", "Drew", "Blake"]
+  }
+}
