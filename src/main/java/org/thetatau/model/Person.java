@@ -15,10 +15,11 @@ public class Person {
     public void setPreferences(List<String> preferences) {
         this.preferences = preferences;
         this.preferenceMap = new HashMap<>();
-        int i = 0;
-        for(String s: preferences) {
-            this.preferenceMap.put(s, i);
-            i++;
+
+        for(int i = 0; i < preferences.size(); i++) {
+            String little = preferences.get(i);
+            System.out.println( i + ") Adding " + little  + " to " + name);
+            this.preferenceMap.put(little, i);
         }
     }
 
@@ -29,18 +30,7 @@ public class Person {
         String currentLittleName = match.name;
         String newLittleName = newLittle.name;
         Integer currentLittleIndex = preferenceMap.getOrDefault(currentLittleName, preferences.size()+1);
-        currentLittleIndex = preferences.indexOf(currentLittleName);
         Integer newLittleIndex = preferenceMap.getOrDefault(newLittleName, preferences.size()+1);
-        newLittleIndex = preferences.indexOf(newLittleName);
-        if(currentLittleIndex == -1) {
-            currentLittleIndex = preferences.size() +1;
-        }
-        if(newLittleIndex == -1) {
-            newLittleIndex = preferences.size() +1;
-        }
-        System.out.println("Current Little Index: " + currentLittleName + " " + currentLittleIndex);
-        System.out.println("New Little Index: " + newLittleName + " " + newLittleIndex);
-
         return newLittleIndex < currentLittleIndex;
     }
 
