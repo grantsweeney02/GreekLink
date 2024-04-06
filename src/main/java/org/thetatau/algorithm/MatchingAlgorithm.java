@@ -6,23 +6,28 @@ import java.util.*;
 
 public class MatchingAlgorithm {
     public static void runMyAlgorithm(Map<String, Person> bigs, Map<String, Person> littles) {
+        System.out.println("-------------Matching---------------");
         Queue<Person> unmatchedLittles = new LinkedList<>(littles.values());
         while (!unmatchedLittles.isEmpty()) {
             Person little = unmatchedLittles.poll();
             for (String bigName : little.preferences) {
                 if(bigs.containsKey(bigName)) {
+                    System.out.println(little.name + " is asking " + bigName);
                     Person big = bigs.get(bigName);
-                    if (big.isMatched()) {
+                    if (big.isNotMatched()) {
                         big.setMatch(little);
                         little.setMatch(big);
                         break;
                     } else {
+                        System.out.println(big.name + " is paired let's see if it is higher");
+                        if(big.name.equals("MOLLY GIBSON")) {
+                            System.out.println(big.prefers(little));
+                        }
                         if (big.prefers(little)) {
                             Person currentMatchLittle = big.getMatch();
-                           little.setMatch(big);
+                            little.setMatch(big);
                             currentMatchLittle.removeMatch();
                             unmatchedLittles.add(currentMatchLittle);
-
                             big.setMatch(little);
                             break;
                         }
@@ -30,6 +35,7 @@ public class MatchingAlgorithm {
                 }
             }
         }
+        System.out.println("-------------Done.---------------");
     }
 
     public static void runRandomAlgorithm(Map<String, Person> bigs, Map<String, Person> littles) {

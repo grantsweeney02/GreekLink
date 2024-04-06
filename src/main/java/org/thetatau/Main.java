@@ -16,7 +16,7 @@ public class Main {
 
 
     public static void main(String[] args) {
-        JSONObject jsonData = JsonUtil.readJsonFromFile("src/main/resources/tester_complex_unequal.json");
+        JSONObject jsonData = JsonUtil.readJsonFromFile("src/main/resources/matching_preferences.json");
 
         Map<String, Person> bigs = PersonUtil.createPeopleFromJson(jsonData.getJSONObject("bigs"));
         Map<String, Person> littles = PersonUtil.createPeopleFromJson(jsonData.getJSONObject("littles"));
@@ -49,7 +49,6 @@ public class Main {
                 System.out.println(littles.get(s));
             }
         }
-
         unMatchedBigs = PersonUtil.findUnMatchedPeople(bigs);
         unMatchedLittles = PersonUtil.findUnMatchedPeople(littles);
 
@@ -61,9 +60,6 @@ public class Main {
         System.out.println("\nFinal Matching");
         for (String s: bigs.keySet()) {
             System.out.println(bigs.get(s));
-        }
-        for (String s: littles.keySet()) {
-            System.out.println(littles.get(s));
         }
     }
 

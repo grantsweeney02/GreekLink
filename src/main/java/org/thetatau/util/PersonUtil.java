@@ -29,7 +29,7 @@ public class PersonUtil {
         HashMap<String, Person> unMatchedPeople = new HashMap<>();
         for (String s: people.keySet()) {
             Person person = people.get(s);
-            if(person.isMatched()) {
+            if(person.isNotMatched()) {
                 unMatchedPeople.put(s, person);
             }
         }
