@@ -10,8 +10,6 @@ import org.thetatau.model.Person;
 import org.thetatau.util.JsonUtil;
 import org.thetatau.util.PersonUtil;
 
-import javax.crypto.Mac;
-
 public class Main {
 
 
@@ -22,32 +20,17 @@ public class Main {
         Map<String, Person> littles = PersonUtil.createPeopleFromJson(jsonData.getJSONObject("littles"));
 
         System.out.println("\nUnMatched");
-        for (String s: bigs.keySet()) {
-            System.out.println(bigs.get(s));
-        }
-        for (String s: littles.keySet()) {
-            System.out.println(littles.get(s));
-        }
+        printPairings(bigs, littles);
 
         MatchingAlgorithm.runMyAlgorithm(bigs, littles);
         System.out.println("\nAfter littles' Preferences");
-        for (String s: bigs.keySet()) {
-            System.out.println(bigs.get(s));
-        }
-        for (String s: littles.keySet()) {
-            System.out.println(littles.get(s));
-        }
+        printPairings(bigs, littles);
         HashMap<String, Person> unMatchedBigs = PersonUtil.findUnMatchedPeople(bigs);
         HashMap<String, Person> unMatchedLittles = PersonUtil.findUnMatchedPeople(littles);
         if(!unMatchedBigs.isEmpty() || !unMatchedLittles.isEmpty()) {
             MatchingAlgorithm.runMyAlgorithm(unMatchedLittles, unMatchedBigs);
             System.out.println("\nAfter bigs' Preferences");
-            for (String s: bigs.keySet()) {
-                System.out.println(bigs.get(s));
-            }
-            for (String s: littles.keySet()) {
-                System.out.println(littles.get(s));
-            }
+            printPairings(bigs, littles);
         }
         unMatchedBigs = PersonUtil.findUnMatchedPeople(bigs);
         unMatchedLittles = PersonUtil.findUnMatchedPeople(littles);
@@ -63,7 +46,12 @@ public class Main {
         }
     }
 
-    private static void createPeople(JSONObject obj) {
-
+    private static void printPairings(Map<String, Person> bigs, Map<String, Person> littles) {
+        for (String s : bigs.keySet()) {
+            System.out.println(bigs.get(s));
+        }
+        for (String s : littles.keySet()) {
+            System.out.println(littles.get(s));
+        }
     }
 }
